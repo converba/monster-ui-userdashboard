@@ -1,0 +1,10 @@
+{
+	"userdashboard": {
+		"submodules": {
+			"voicemail": {
+				"menuTitle": "Voicemail",
+				"title": "Voicemail"
+			}
+		}
+	}
+}

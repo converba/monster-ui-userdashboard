@@ -3,6 +3,12 @@ define(function(require){
 		toastr = require('toastr'),
 		monster = require('monster');
 
+	const CONFIG = {
+		submoduleName: 'mobile',
+		i18n: [ 'en-US' ],
+		css: [ 'mobile' ]
+	};
+
 	var app = {
 		requests: {},
 
@@ -11,24 +17,29 @@ define(function(require){
 		},
 
 		mobileInitModuleLayout: function(args) {
-			var self = this,
-				appLayout = args.layout,
-				i18nMobile = self.i18n.active().userdashboard.mobile;
+			var self = this;
 
-			appLayout.menus.push({
-				tabs: [
-					{
-						text: i18nMobile.menuTitle,
-						callback: self.mobileRender
-					}
-				]
+			self.extendI18nOfSubmodule(CONFIG, function () {
+				var menuTitle = self.i18n.active().userdashboard.submodules[CONFIG.submoduleName].menuTitle;
+				self.layout.menus.push({
+					tabs: [
+						{
+							text: menuTitle,
+							callback: self.mobileRender
+						}
+					]
+				});
+				args.callback && args.callback(CONFIG);
 			});
 		},
+
 		mobileRender: function(args){
 			var self = this,
-				parent = args.parent,
 				container = args.container,
-				template = $(monster.template(self, 'mobile', {}));
+				template = template = self.getTemplate({
+					name: 'mobile',
+					submodule: CONFIG.submoduleName
+				});
 
 			container
 				.empty()

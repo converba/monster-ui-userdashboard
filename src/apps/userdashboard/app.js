@@ -1,28 +1,29 @@
 define(function(require){
 	var $ = require('jquery'),
 		monster = require('monster');
+	var modulesConfig = require('./submodules');
+
+	// Autoload submodules
+	// (Submodules should be described in /apps/storagemgmt/modules.js)
+	var modulesList = modulesConfig.submodules;
+	var modulesPaths = [];
+	for (var i = 0, len = modulesList.length; i < len; i++) {
+		modulesPaths.push('./submodules/' + modulesList[i] + '/' + modulesList[i])
+	}
+	require(modulesPaths);
 
 	var app = {
 		name: 'userdashboard',
-
 		css: ['app'],
-
 		i18n: {
 			'en-US': { customCss: false }
 		},
-
 		requests: {},
-
-		subModules: [
-			'mobile',
-			'user',
-			'voicemail'
-		],
-
-		layout: {
-			appType: 'fullscreen',
-			menus: []
+		subModules: modulesList,
+		subscribe: {
+			'userdashboard.initModules': 'define_dashboard_modules' // For all submodules
 		},
+		layout: {},
 
 		load: function(callback){
 			var self = this;
@@ -90,18 +91,52 @@ define(function(require){
 
 			var self = this,
 				$parent = $container || $('#monster_content');
+			var loadedModules = [];
 
-			monster.pub('userdashboard.initModules', { layout: self.layout });
+			self.layout = {
+				appType: 'fullscreen',
+				menus: []
+			};
 
-			self.layout.menus.push({
-				tabs: [{
-					text: 'Settings',
-					layout: 'fullscreen',
-					callback: self.renderSettingsLayout
-				}]
+			monster.pub('userdashboard.initModules', {
+				callback: function (CONFIG) {
+					self.addCSSofSubmodule(CONFIG);
+					loadedModules.push(CONFIG.submoduleName);
+					if (loadedModules.length >= self.subModules.length) {
+						monster.ui.generateAppLayout(self, self.layout);
+					}
+				}
 			});
+		},
 
-			monster.ui.generateAppLayout(self, self.layout);
+		extendI18nOfSubmodule: function (args, callback) {
+			var self = this;
+			if(args.i18n && args.submoduleName) {
+				var submoduleLanguages = args.i18n;
+				var curLanguage = self.i18n.hasOwnProperty(monster.config.whitelabel.language) ? monster.config.whitelabel.language : monster.defaultLanguage;
+
+				if (submoduleLanguages.length && submoduleLanguages.length > 0) {
+					if(submoduleLanguages.indexOf(curLanguage) > -1) {
+						$.getJSON('/apps/' + self.name + '/submodules/' + args.submoduleName + '/i18n/' + curLanguage  + '.json')
+							.done(function (newDict) {
+								var dict = self.data.i18n[curLanguage];
+								$.extend(true, dict, newDict);
+								callback && callback();
+							})
+					}
+				}
+			} else {
+				!!console && console.log && console.log('Extend i18n of submodule failed');
+			}
+		},
+
+		addCSSofSubmodule: function (CONFIG) {
+			var self = this;
+			var cssFilesList = CONFIG.css || [];
+			for (var i = 0, len = cssFilesList.length; i < len; i++) {
+				var href = 'apps/' + self.name + '/submodules/' + CONFIG.submoduleName + '/' + cssFilesList[i] + '.css';
+				$('head').append('<link rel="stylesheet" href="' + href + '" type="text/css" />');
+			}
 		},
 
 		renderSettingsLayout: function(args) {

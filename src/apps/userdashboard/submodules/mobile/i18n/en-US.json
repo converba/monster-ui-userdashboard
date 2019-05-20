@@ -1,0 +1,10 @@
+{
+	"userdashboard": {
+		"submodules": {
+			"mobile": {
+				"menuTitle": "Mobile",
+				"title": "Mobile"
+			}
+		}
+	}
+}

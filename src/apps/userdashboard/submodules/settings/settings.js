@@ -4,19 +4,19 @@ define(function(require){
 		monster = require('monster');
 
 	const CONFIG = {
-		submoduleName: 'voicemail',
+		submoduleName: 'settings',
 		i18n: [ 'en-US' ],
-		css: [ 'voicemail' ]
+		css: [ 'settings' ]
 	};
 
 	var app = {
 		requests: {},
 
 		subscribe: {
-			'userdashboard.initModules': 'voicemailInitModuleLayout'
+			'userdashboard.initModules': 'settingsInitModuleLayout'
 		},
 
-		voicemailInitModuleLayout: function(args) {
+		settingsInitModuleLayout: function(args) {
 			var self = this;
 
 			self.extendI18nOfSubmodule(CONFIG, function () {
@@ -25,22 +25,23 @@ define(function(require){
 					tabs: [
 						{
 							text: menuTitle,
-							callback: self.voicemailRender
+							callback: self.settingsRender
 						}
 					]
 				});
 				args.callback && args.callback(CONFIG);
 			});
 		},
-		voicemailRender: function(args){
+
+		settingsRender: function(args){
 			var self = this,
-				$container = args.container,
+				container = args.container,
 				template = self.getTemplate({
-					name: 'voicemail',
+					name: 'settings',
 					submodule: CONFIG.submoduleName
 				});
 
-			$container
+			container
 				.empty()
 				.append(template)
 				.show();

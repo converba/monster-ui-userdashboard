@@ -1,0 +1,10 @@
+{
+	"userdashboard": {
+		"submodules": {
+			"settings": {
+				"menuTitle": "Settings",
+				"title": "Settings"
+			}
+		}
+	}
+}

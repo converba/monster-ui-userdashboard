@@ -3,6 +3,24 @@ define(function(require){
 		toastr = require('toastr'),
 		monster = require('monster');
 
+	const CONFIG = {
+		submoduleName: 'user',
+		i18n: [ 'en-US' ],
+		css: [ 'user' ]
+	};
+
+	var deviceIcons = {
+		'cellphone': 'fa fa-phone',
+		'smartphone': 'icon-telicon-mobile-phone',
+		'landline': 'icon-telicon-home',
+		'mobile': 'icon-telicon-sprint-phone',
+		'softphone': 'icon-telicon-soft-phone',
+		'sip_device': 'icon-telicon-voip-phone',
+		'sip_uri': 'icon-telicon-voip-phone',
+		'fax': 'icon-telicon-fax',
+		'ata': 'icon-telicon-ata'
+	};
+
 	var app = {
 		requests: {},
 
@@ -10,47 +28,40 @@ define(function(require){
 			'userdashboard.initModules': 'userFeaturesInitModuleLayout'
 		},
 
-		deviceIcons: {
-			'cellphone': 'fa fa-phone',
-			'smartphone': 'icon-telicon-mobile-phone',
-			'landline': 'icon-telicon-home',
-			'mobile': 'icon-telicon-sprint-phone',
-			'softphone': 'icon-telicon-soft-phone',
-			'sip_device': 'icon-telicon-voip-phone',
-			'sip_uri': 'icon-telicon-voip-phone',
-			'fax': 'icon-telicon-fax',
-			'ata': 'icon-telicon-ata'
-		},
-
 		userFeaturesInitModuleLayout: function(args) {
-			var self = this,
-				appLayout = args.layout,
-				i18n = self.i18n.active().userdashboard.userFeatures;
+			var self = this;
 
-			appLayout.menus.push({
-				tabs: [
-					{
-						text: i18n.menuTitle,
-						menus: [{
-							tabs: [{
-								text: i18n.mainFeatures.menuTitle,
-								callback: self.userFeaturesMainRender
-							},{
-								text: i18n.outOfOffice.menuTitle,
-								callback: self.userFeaturesOutOfOfficeRender
-							},{
-								text: i18n.findMeFollowMe.title,
-								callback: self.userFeaturesFindMeFollowMeRender
+			self.extendI18nOfSubmodule(CONFIG, function () {
+				var i18n = self.i18n.active().userdashboard.submodules[CONFIG.submoduleName];
+				self.layout.menus.push({
+					tabs: [
+						{
+							text: i18n.menuTitle,
+							menus: [{
+								tabs: [{
+									text: i18n.mainFeatures.menuTitle,
+									callback: self.userFeaturesMainRender
+								},{
+									text: i18n.outOfOffice.menuTitle,
+									callback: self.userFeaturesOutOfOfficeRender
+								},{
+									text: i18n.findMeFollowMe.title,
+									callback: self.userFeaturesFindMeFollowMeRender
+								}]
 							}]
-						}]
-					}
-				]
+						}
+					]
+				});
+				args.callback && args.callback(CONFIG);
 			});
 		},
 		userFeaturesMainRender: function(args){
 			var self = this,
 				$container = args.container,
-				template = $(monster.template(self, 'userFeaturesMain', {}));
+				template = self.getTemplate({
+					name: 'userFeaturesMain',
+					submodule: CONFIG.submoduleName
+				});
 
 			$container
 				.empty()
@@ -62,7 +73,7 @@ define(function(require){
 			var self = this,
 				$container = args.container,
 				//template = $(monster.template(self, 'userFeaturesFindMeFollowMe', {})),
-				i18n = self.i18n.active().userdashboard.userFeatures;
+				i18n = self.i18n.active().userdashboard.submodules.user;
 
 			monster.parallel({
 				userDevices: function(callback) {
@@ -95,7 +106,12 @@ define(function(require){
 				} else {
 					var currentUser = results.user.data,
 						userCallflow = results.userCallflow,
-						featureTemplate = $(monster.template(self, 'userFeaturesFindMeFollowMe', { user: results.user })),
+						featureTemplate = self.getTemplate({
+							name: 'userFeaturesFindMeFollowMe',
+							submodule: CONFIG.submoduleName,
+							data: { user: results.user }
+						});
+
 						switchFeature = featureTemplate.find('.switch-state'),
 						featureForm = featureTemplate.find('#find-me-follow-me-form'),
 						args = {
@@ -127,7 +143,7 @@ define(function(require){
 								delay: endpoint.delay,
 								timeout: endpoint.timeout,
 								name: device.name,
-								icon: self.deviceIcons[device.device_type],
+								icon: deviceIcons[device.device_type],
 								disabled: false
 							};
 						}
@@ -139,7 +155,7 @@ define(function(require){
 							delay: 0,
 							timeout: 0,
 							name: device.name,
-							icon: self.deviceIcons[device.device_type],
+							icon: deviceIcons[device.device_type],
 							disabled: true
 						});
 					});
@@ -342,7 +358,10 @@ define(function(require){
 		userFeaturesOutOfOfficeRender: function(args){
 			var self = this,
 				$container = args.container,
-				template = $(monster.template(self, 'userFeaturesOutOfOffice', {}));
+				template = self.getTemplate({
+					name: 'userFeaturesOutOfOffice',
+					submodule: CONFIG.submoduleName
+				});
 
 			$container
 				.empty()
