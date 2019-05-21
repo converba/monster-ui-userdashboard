@@ -106,20 +106,20 @@ define(function(require){
 				} else {
 					var currentUser = results.user.data,
 						userCallflow = results.userCallflow,
-						featureTemplate = self.getTemplate({
+						featureTemplate = $(self.getTemplate({
 							name: 'userFeaturesFindMeFollowMe',
 							submodule: CONFIG.submoduleName,
 							data: { user: results.user }
-						});
+						}));
 
-						switchFeature = featureTemplate.find('.switch-state'),
-						featureForm = featureTemplate.find('#find-me-follow-me-form'),
+						switchFeature = featureTemplate.find('.switch-state');
+						featureForm = featureTemplate.find('#find-me-follow-me-form');
 						args = {
 							callback: function() {
 								popup.dialog('close').remove();
 							},
 							openedTab: 'features'
-						},
+						};
 						userDevices = {};
 
 					var nodeSearch = userCallflow.flow,
