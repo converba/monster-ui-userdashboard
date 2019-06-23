@@ -1,0 +1,22 @@
+{
+	"userdashboard": {
+		"submodules": {
+			"fax": {
+				"menuTitle": "Fax",
+				"title": "Fax",
+				"inbound": {
+					"menuTitle": "Inbound",
+					"title": "Inbound"
+				},
+				"outbound": {
+					"menuTitle": "Outbound",
+					"title": "Outbound"
+				},
+				"emailToFax": {
+					"menuTitle": "Email to fax",
+					"title": "Email to fax"
+				}
+			}
+		}
+	}
+}

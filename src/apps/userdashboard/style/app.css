@@ -31,7 +31,8 @@
 	padding: 5px 20px 25px;
 }
 
-#userdashboard_app_container .content-item h3 {
+#userdashboard_app_container .content-item h3,
+#userdashboard_app_container .content-item .title {
 	font-size: 23px;
 	font-weight: normal;
 }

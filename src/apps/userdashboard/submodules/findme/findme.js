@@ -6,7 +6,7 @@ define(function(require){
 	const CONFIG = {
 		submoduleName: 'findme',
 		i18n: [ 'en-US' ],
-		css: [ 'user' ]
+		css: [ 'findme' ]
 	};
 
 	var deviceIcons = {
@@ -25,10 +25,10 @@ define(function(require){
 		requests: {},
 
 		subscribe: {
-			'userdashboard.initModules': 'userFeaturesInitModuleLayout'
+			'userdashboard.initModules': 'findMeFollowMeInitModuleLayout'
 		},
 
-		userFeaturesInitModuleLayout: function(args) {
+		findMeFollowMeInitModuleLayout: function(args) {
 			var self = this;
 
 			self.extendI18nOfSubmodule(CONFIG, function () {
@@ -36,53 +36,29 @@ define(function(require){
 				self.layout.menus.push({
 					tabs: [
 						{
-							text: i18n.menuTitle,
-							menus: [{
-								tabs: [{
-									text: i18n.mainFeatures.menuTitle,
-									callback: self.userFeaturesMainRender
-								},{
-									text: i18n.outOfOffice.menuTitle,
-									callback: self.userFeaturesOutOfOfficeRender
-								},{
-									text: i18n.findMeFollowMe.title,
-									callback: self.userFeaturesFindMeFollowMeRender
-								}]
-							}]
+							text: i18n.title,
+							callback: self.findMeFollowMeRender
 						}
 					]
 				});
 				args.callback && args.callback(CONFIG);
 			});
 		},
-		userFeaturesMainRender: function(args){
+
+		findMeFollowMeRender: function(args) {
 			var self = this,
 				$container = args.container,
-				template = self.getTemplate({
-					name: 'userFeaturesMain',
-					submodule: CONFIG.submoduleName
-				});
-
-			$container
-				.empty()
-				.append(template)
-				.show();
-		},
-
-		userFeaturesFindMeFollowMeRender: function(args) {
-			var self = this,
-				$container = args.container,
-				//template = $(monster.template(self, 'userFeaturesFindMeFollowMe', {})),
-				i18n = self.i18n.active().userdashboard.submodules.user;
+				//template = $(monster.template(self, 'findMeFollowMe', {})),
+				i18n = self.i18n.active().userdashboard.submodules.findme;
 
 			monster.parallel({
 				userDevices: function(callback) {
-					self.userFeaturesListDeviceUser(self.userId, function(devices) {
+					self.findMeFollowMeListDeviceUser(self.userId, function(devices) {
 						callback(null, devices);
 					});
 				},
 				userCallflow: function(callback) {
-					self.userFeaturesGetMainCallflow(self.userId, function(callflow) {
+					self.findMeFollowMeGetMainCallflow(self.userId, function(callflow) {
 						callback(null, callflow);
 					});
 				},
@@ -100,14 +76,14 @@ define(function(require){
 				}
 			}, function(error, results) {
 				if (!results.userCallflow) {
-					monster.ui.alert('error', i18n.findMeFollowMe.noNumber);
+					monster.ui.alert('error', i18n.noNumber);
 				} else if (!results.userDevices || results.userDevices.length === 0) {
-					monster.ui.alert('error', i18n.findMeFollowMe.noDevice);
+					monster.ui.alert('error', i18n.noDevice);
 				} else {
 					var currentUser = results.user.data,
 						userCallflow = results.userCallflow,
 						featureTemplate = $(self.getTemplate({
-							name: 'userFeaturesFindMeFollowMe',
+							name: 'findMeFollowMe',
 							submodule: CONFIG.submoduleName,
 							data: { user: results.user }
 						}));
@@ -115,9 +91,7 @@ define(function(require){
 						switchFeature = featureTemplate.find('.switch-state');
 						featureForm = featureTemplate.find('#find-me-follow-me-form');
 						args = {
-							callback: function() {
-								popup.dialog('close').remove();
-							},
+							callback: function() {},
 							openedTab: 'features'
 						};
 						userDevices = {};
@@ -164,10 +138,6 @@ define(function(require){
 						container: featureForm,
 						endpoints: endpoints,
 						hasDisableColumn: true
-					});
-
-					featureTemplate.find('.cancel-link').on('click', function() {
-						popup.dialog('close').remove();
 					});
 
 					switchFeature.on('change', function() {
@@ -238,7 +208,7 @@ define(function(require){
 										});
 									},
 									user: function(callbackParallel) {
-										self.userFeaturesUpdateUser(currentUser, function(data) {
+										self.findMeFollowMeUpdateUser(currentUser, function(data) {
 											callbackParallel && callbackParallel(null, data.data);
 										});
 									}
@@ -262,10 +232,10 @@ define(function(require){
 		},
 
 
-		userFeaturesUpdateUser: function(userData, callback) {
+		findMeFollowMeUpdateUser: function(userData, callback) {
 			var self = this;
 
-			userData = self.userFeaturesCleanUserData(userData);
+			userData = self.findMeFollowMeCleanUserData(userData);
 
 			self.callApi({
 				resource: 'user.update',
@@ -280,7 +250,7 @@ define(function(require){
 			});
 		},
 
-		userFeaturesCleanUserData: function(userData) {
+		findMeFollowMeCleanUserData: function(userData) {
 			userData = $.extend(true, {}, userData);
 			var fullName = userData.first_name + ' ' + userData.last_name,
 			defaultCallerIdName = fullName.substring(0, 15),
@@ -354,22 +324,7 @@ define(function(require){
 			return userData;
 		},
 
-
-		userFeaturesOutOfOfficeRender: function(args){
-			var self = this,
-				$container = args.container,
-				template = self.getTemplate({
-					name: 'userFeaturesOutOfOffice',
-					submodule: CONFIG.submoduleName
-				});
-
-			$container
-				.empty()
-				.append(template)
-				.show();
-		},
-
-		userFeaturesListDeviceUser: function(userId, callback) {
+		findMeFollowMeListDeviceUser: function(userId, callback) {
 			var self = this;
 
 			self.callApi({
@@ -387,10 +342,10 @@ define(function(require){
 			});
 		},
 
-		userFeaturesGetMainCallflow: function(userId, callback){
+		findMeFollowMeGetMainCallflow: function(userId, callback){
 			var self = this;
 
-			self.userFeaturesListCallflowsUser(userId, function(listCallflows) {
+			self.findMeFollowMeListCallflowsUser(userId, function(listCallflows) {
 				var indexMain = -1;
 
 				$.each(listCallflows, function(index, callflow) {
@@ -420,7 +375,7 @@ define(function(require){
 				}
 			});
 		},
-		userFeaturesListCallflowsUser: function(userId, callback) {
+		findMeFollowMeListCallflowsUser: function(userId, callback) {
 			var self = this;
 
 			self.callApi({

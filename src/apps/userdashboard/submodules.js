@@ -1,9 +1,8 @@
 define(function(require) {
 	return {
 		"submodules": [
-			"mobile",
-			"user",
-			"voicemail",
+			"findme",
+			"fax",
 			"settings"
 		]
 	};
