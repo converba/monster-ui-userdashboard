@@ -1,0 +1,225 @@
+/* Default empty state */
+.faxes-container.empty .empty-state {
+	display: block;
+}
+
+.faxes-container .empty-state {
+	display: none;
+	text-align: center;
+}
+
+.faxes-container .empty-state .headline {
+	font-size: 22px;
+	margin-top: 35px;
+}
+
+.faxes-container .empty-state .sub-headline {
+	color: #606069;
+	font-size: 16px;
+	margin-top: 13px;
+}
+
+.faxes-container .empty-state .count {
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.faxes-container .empty-state .faxboxes-list {
+	margin-top: 30px;
+	width: 450px;
+	text-align: left;
+}
+
+.faxes-container .empty-state .chosen-drop {
+	width: 450px;
+}
+
+.faxes-container .empty-state .chosen-container > a,
+.faxes-container .main-header .chosen-container > a {
+	height: 40px;
+	line-height: 40px;
+	width: 450px;
+}
+
+.faxes-container .main-header {
+	margin-bottom: 25px;
+}
+
+.faxes-container .main-header .select-header {
+	color: #606069;
+	margin-bottom: 5px;
+}
+
+.faxes-container .main-header .chosen-drop,
+.faxes-container .main-header .chosen-container > a,
+.faxes-container .main-header .faxboxes-list,
+.faxes-container .main-header .faxbox-selector {
+	width: 300px;
+}
+
+.faxes-container .main-header > * {
+	display: inline-block;
+	margin-right: 25px;
+}
+
+.faxes-container .main-header #refresh_faxbox {
+	margin-top: 35px;
+}
+
+.faxes-container .main-header .faxbox-selector .chosen-container .chosen-single span {
+	font-size: 18px;
+}
+
+.faxes-container .data-state {
+	display: none;
+}
+
+.faxes-container .loading-state {
+	display: none;
+	background: #fff none repeat scroll 0 0;
+	border: 1px dashed #aaa;
+	font-size: 60px;
+	padding: 50px;
+	text-align: center;
+	position: relative;
+	top: 50px;
+}
+
+.faxes-container .faxboxes-list {
+	display: block;
+	margin: auto;
+	width: 400px;
+}
+
+/* Action Bar */
+.faxes-container.empty .filters.search,
+.faxes-container.empty .filters.basic-actions > *,
+.faxes-container.empty .main-header {
+	display: none;
+}
+
+.faxes-container .filters.basic-actions {
+	display: inline-block;
+}
+
+.faxes-container:not(.empty) .action-bar {
+	display: block;
+}
+
+.faxes-container .action-bar {
+	display: none;
+}
+
+.faxes-container .action-bar .filters > :first-child {
+	margin-left: 0;
+}
+
+.faxes-container .action-bar .margin-left {
+	margin-left: 10px;
+}
+
+.faxes-container .action-bar .hidable {
+	display: inline-block;
+}
+
+.faxes-container .action-bar .hidable.hidden {
+	display: none;
+}
+
+/* Table */
+.faxes-container .faxbox-table table {
+	margin-top: 0;
+}
+
+.faxes-container .faxbox-table tbody tr > td:first-child .monster-checkbox {
+	margin-right: 10px;
+	margin-top: 8px;
+}
+
+.faxes-container .faxbox-table .select-cell {
+	min-width: 20px !important;
+	width: 20px;
+}
+
+.faxes-container .faxbox-table .select-line {
+	cursor: pointer;
+}
+
+.faxes-container .faxbox-table tr .bottom-line {
+	color: #707079;
+	font-size: 12px;
+}
+
+.faxes-container .faxbox-table td.no-padding {
+	padding: 0;
+}
+
+.faxes-container .faxbox-table .status {
+	text-transform: uppercase;
+}
+
+.faxes-container .filter-by-date .date-ranges > * {
+	margin: 0 10px 0 0;
+	vertical-align: middle;
+}
+
+.faxes-container .filter-by-date .date-ranges > span {
+	margin-right: 5px;
+}
+
+.faxes-container .filter-by-date .date-ranges input.date-filter {
+	height: 24px;
+	width: 90px;
+}
+
+.faxes-container .filter-by-date .date-ranges i.fa-calendar {
+	margin-left: -30px;
+	margin-right: 20px;
+}
+
+.faxes-container .filter-by-date {
+	float: right;
+	line-height: 30px;
+	margin-left: 30px;
+}
+
+.faxes-container .filter-by-date.active .expand-dates {
+	float: right;
+}
+
+.faxes-container .filter-by-date .date-ranges,
+.faxes-container .filter-by-date.active .expand-dates {
+	display: none;
+}
+
+.faxes-container .filter-by-date.active .date-ranges {
+	display: block;
+}
+
+/* CDR Popup */
+#faxbox_cdr_details_dialog {
+	width: 750px;
+	margin: 15px;
+}
+
+/* Faxes log */
+#smtp_logs_container .table .detail-link {
+	margin: 0px;
+}
+
+#smtp_logs_grid {
+	clear: right;
+}
+
+#smtp_logs_detail_dialog {
+	width: 700px;
+	padding: 15px;
+}
+
+#smtp_logs_detail_dialog tr,
+#smtp_logs_detail_dialog td {
+	line-height: 15px;
+	padding: 2px;
+	white-space: normal;
+}

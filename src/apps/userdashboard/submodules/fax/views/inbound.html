@@ -1,3 +1,100 @@
-<div id="userdashboard_fax" class="userdashboard-fax fax-inbound content-item">
-	<h2 class="title">{{ i18n.userdashboard.submodules.fax.inbound.title }}</h2>
+<div id="userdashboard_fax" class="userdashboard-fax inbound-faxes-container faxes-container empty">
+	<div class="main-header clearfix">
+		<div class="faxbox-selection-wrapper pull-left">
+			<div class="filters faxbox-selector">
+				<div class="select-header">
+					{{ i18n.userdashboard.submodules.fax.actionBar.currentlyViewing }}
+				</div>
+				<select class="select-faxbox" id="select_faxbox">
+					<option value="none"></option>
+					{{#each faxboxes}}
+					<option value="{{id}}">{{name}}</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+
+		<a id="refresh_faxbox" class="monster-link pull-left" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.userdashboard.submodules.fax.actionBar.refresh }}"><i class="fa fa-refresh"></i></a>
+	</div>
+	<div class="monster-table-wrapper-spaced">
+		<div class="action-bar monster-table-header">
+			<div class="filters basic-actions pull-left">
+				<div class="select-faxbox-wrapper monster-select-dropdown-neutral pull-left" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.userdashboard.submodules.fax.actionBar.tooltips.select }}">
+					<li class="dropdown">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);">
+							{{#monsterCheckbox}}
+							<input class="main-select-fax" type="checkbox"/>
+							{{/monsterCheckbox}}
+							<i class="fa fa-caret-down"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="javascript:void(0);" class="select-some-faxes" data-type="all">{{ i18n.userdashboard.submodules.fax.actionBar.select.all }}</a></li>
+							<li><a href="javascript:void(0);" class="select-some-faxes" data-type="none">{{ i18n.userdashboard.submodules.fax.actionBar.select.none }}</a></li>
+						</ul>
+					</li>
+				</div>
+
+				<div class="filters selected-actions pull-left margin-left">
+					<button id="delete_faxes" data-type="inbound" class="monster-button-neutral monster-button-fit margin-left hidable hidden" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.userdashboard.submodules.fax.actionBar.tooltips.delete }}">
+						<i class="fa fa-trash"></i>
+					</button>
+				</div>
+			</div>
+
+			<div class="filter-by-date">
+				<div class="expand-dates">
+					<a class="monster-link blue toggle-filter">{{ i18n.userdashboard.submodules.fax.actionBar.filterByDate }}</a>
+				</div>
+				<div class="date-ranges">
+					<span>{{i18n.startDate}}</span>
+					<input id="startDate" type="text" class="date-filter filter-from">
+					<i class="fa fa-calendar"></i>
+					<span>{{i18n.endDate}}</span>
+					<input id="endDate" type="text" class="date-filter filter-to">
+					<i class="fa fa-calendar"></i>
+					<button type="button" class="apply-filter monster-button-neutral monster-button-fit">{{i18n.filter}}</button>
+					<a class="monster-link blue toggle-filter">{{i18n.cancel}}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="content">
+			<div class="empty-state">
+				<div class="headline">{{ i18n.userdashboard.submodules.fax.empty.headline1 }}<span class="count">{{count}}</span>{{ i18n.userdashboard.submodules.fax.empty.headline2 }}</div>
+				<div class="sub-headline">{{ i18n.userdashboard.submodules.fax.empty.subHeadlineInbound }}</div>
+
+				<div class="faxboxes-list">
+					<select class="select-faxbox" id="select_faxbox_empty">
+						<option value="none"></option>
+						{{#each faxboxes}}
+						<option class="box-row" data-id="{{id}}" value="{{id}}">{{name}}</option>
+						{{/each}}
+					</select>
+				</div>
+			</div>
+			<div class="data-state">
+				<div class="faxbox-table">
+					<table class="monster-table footable" id="inbound_faxes_table">
+						<thead>
+						<tr>
+							<th data-filterable="false" data-type="html" data-sortable="false"></th>
+							<th data-type="html" data-sorted="true" data-direction="DESC">{{ i18n.userdashboard.submodules.fax.table.columns.received }}</th>
+							<th data-type="html">{{ i18n.userdashboard.submodules.fax.table.columns.from }}</th>
+							<th>{{ i18n.userdashboard.submodules.fax.table.columns.receivingFaxbox }}</th>
+							<th data-type="html">{{ i18n.userdashboard.submodules.fax.table.columns.receivingNumber }}</th>
+							<th data-breakpoints="xs" data-type="number">{{ i18n.userdashboard.submodules.fax.table.columns.pages }}</th>
+							<th data-filterable="false" data-type="html" data-sortable="false"></th>
+						</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="loading-state">
+				<i class="fa fa-spin fa-spinner monster-primary-color"></i>
+			</div>
+		</div>
+	</div>
 </div>

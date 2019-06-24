@@ -15,6 +15,88 @@
 				"emailToFax": {
 					"menuTitle": "Email to fax",
 					"title": "Email to fax"
+				},
+				"table": {
+					"columns": {
+						"status": "Status",
+						"sent": "Date",
+						"sendingFaxbox": "Sending Faxbox",
+						"sendingNumber": "Sending Number",
+						"received": "Received",
+						"receivingFaxbox": "Receiving Faxbox",
+						"receivingNumber": "Receiving Number",
+						"pages": "Pages",
+						"from": "From"
+					},
+					"emptyRow": "There are no faxes listed under this Fax Box",
+					"status": {
+						"success": "Success",
+						"processing": "Processing",
+						"failed": "Failed",
+						"pending": "Pending",
+						"completed": "Completed"
+					},
+					"noData": "N/A"
+				},
+				"empty": {
+					"headline1": "There are",
+					"headline2": "faxboxes recognized on this account",
+					"subHeadlineInbound": "Select a box to manage the inbound faxes it contains.",
+					"subHeadlineOutbound": "Select a box to manage the outbound faxes it sent."
+				},
+				"actionBar": {
+					"refresh": "Refresh",
+					"select": {
+						"all": "All on page",
+						"failed": "Failed",
+						"completed": "Completed",
+						"none": "None"
+					},
+					"selectFaxbox": {
+						"none": "Select a Fax Box"
+					},
+					"from": "From",
+					"to": "To",
+					"markAsNew": "Mark as New",
+					"tooltips": {
+						"refresh": "Refresh",
+						"select": "Select",
+						"resend": "Resend",
+						"delete": "Delete"
+					},
+					"currentlyViewing": "Currently Viewing",
+					"filterByDate": "Filter By Dates"
+				},
+				"CDRPopup": {
+					"title": "Fax Details"
+				},
+				"deleteConfirm": {
+					"content": "Deleting the {{variable}} selected faxes(s) will permanently remove them from the system. This action can not be undone or reversed, and the affected files will be gone forever.",
+					"title": "Are you sure?",
+					"confirmButtonText": "Delete Selected Files",
+					"success": "You successfully deleted the selected faxes from the system!"
+				},
+				"resendConfirm": {
+					"content": "You are attempting to redeliver {{variable}} faxes. Are you sure you want to attempt re-delivery?",
+					"confirmButtonText": "Re-send Faxes",
+					"title": "Are you sure?",
+					"success": "You successfully tried to re-send the selected faxes!"
+				},
+				"logs": {
+					"tableTitles": {
+						"from": "From",
+						"to": "To",
+						"date": "Date",
+						"details": "Details",
+						"status": "Status"
+					},
+					"detailDialog": {
+						"popupTitle": "Technical Details",
+						"metadataTitle": "Metadata",
+						"errorTitle": "Error(s)",
+						"apiKeys": {
+						}
+					}
 				}
 			}
 		}
