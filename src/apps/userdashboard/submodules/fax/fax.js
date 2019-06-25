@@ -57,11 +57,20 @@ define(function(require){
 				})
 			});
 		},
+
 		faxInboundRender: function(args){
+			this.faxRenderCommon(args, 'inbound');
+		},
+
+		faxOutboundRender: function(args){
+			this.faxRenderCommon(args, 'outbound');
+		},
+
+		faxRenderCommon: function(args, type){
 			var self = this,
 				$container = args.container,
 				template = $(self.getTemplate({
-					name: 'inbound',
+					name: type,
 					submodule: CONFIG.submoduleName,
 					data: {
 						faxboxes: vars.faxboxes,
@@ -69,21 +78,8 @@ define(function(require){
 					}
 				}));
 
-			self.faxInitDatePickerFaxboxes('inbound', $container, template);
-			self.faxBindFaxboxes('inbound', template);
-
-			$container
-				.empty()
-				.append(template)
-				.show();
-		},
-		faxOutboundRender: function(args){
-			var self = this,
-				$container = args.container,
-				template = self.getTemplate({
-					name: 'outbound',
-					submodule: CONFIG.submoduleName
-				});
+			self.faxInitDatePickerFaxboxes(type, $container, template);
+			self.faxBindFaxboxes(type, template);
 
 			$container
 				.empty()

@@ -1,0 +1,36 @@
+{{#each faxes}}
+	<tr class="fax-row" data-faxbox-id="{{faxbox_id}}" data-id="{{id}}">
+		<td class="select-cell select-line" data-filter-value="{{id}} {{faxbox_id}}">
+			{{#monsterCheckbox}}
+				<input class="select-fax" type="checkbox" data-id="{{id}}" data-status="{{status}}"/>
+			{{/monsterCheckbox}}
+		</td>
+		<td class="status select-line" data-sort-value="{{status}}" data-filter-value="{{status}}" data-status="{{status}}">
+			<span data-toggle="tooltip" data-placement="top" data-original-title="{{ formatted.error }}">
+				{{#compare status "===" "success"}}
+					<span class="monster-badge-success">{{status}}</span>
+				{{else}}
+					{{#compare status "===" "failed"}}
+						<span class="monster-badge-danger">{{status}}</span>
+					{{else}}
+						<span class="monster-badge-neutral">{{status}}</span>
+					{{/compare}}
+				{{/compare}}
+			</span>
+		</td>
+		<td class="select-line no-padding" data-filter-value="{{created}} {{toFriendlyDate created}}" data-sort-value="{{created}}">
+			<div class="top-line">{{toFriendlyDate created 'date'}}</div>
+			<div class="bottom-line">{{toFriendlyDate created 'time'}}</div>
+		</td>
+		<td class="select-line">{{formatted.sendingFaxbox}}</td>
+		<td class="select-line" data-sort-value="{{formatted.sendingNumber}}">{{#monsterNumberWrapper formatted.sendingNumber}}{{/monsterNumberWrapper}}</td>
+		<td class="select-line" data-sort-value="{{formatted.receivingNumber}}">{{#monsterNumberWrapper formatted.receivingNumber}}{{/monsterNumberWrapper}}</td>
+		<td class="select-line">{{formatted.pages}}</td>
+		<td class="actions">
+			<a class="action-item" download target="_blank" href="{{formatted.uri}}">
+				<i class="fa fa-cloud-download download-fax"></i>
+			</a>
+			<i class="fa fa-list action-item details-fax"></i>
+		</td>
+	</tr>
+{{/each}}
