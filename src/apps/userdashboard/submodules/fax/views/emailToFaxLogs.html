@@ -1,0 +1,35 @@
+<div id="userdashboard_fax" class="userdashboard-fax fax-email-to-fax">
+	<div id="smtp_logs_container">
+		<div class="table-wrapper">
+			<table id="smtp_logs_grid" class="monster-table footable">
+				<thead>
+					<tr>
+						<th data-filterable="false" data-type="html">{{ i18n.userdashboard.submodules.fax.logs.tableTitles.status }}</th>
+						<th>{{ i18n.userdashboard.submodules.fax.logs.tableTitles.from }}</th>
+						<th>{{ i18n.userdashboard.submodules.fax.logs.tableTitles.to }}</th>
+						<th data-sorted="true" data-direction="DESC" data-breakpoints="xs">{{ i18n.userdashboard.submodules.fax.logs.tableTitles.date }}</th>
+						<th data-filterable="false" data-sortable="false" data-type="html">{{ i18n.userdashboard.submodules.fax.logs.tableTitles.details }}</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				{{#each logs}}
+					<tr class="log-row" data-id="{{id}}" data-id="{{id}}">
+						<td data-sort-value="{{formatted.hasError}}">
+							{{#if formatted.hasError}}
+								<i class="monster-red fa fa-thumbs-down"></i>
+							{{else}}
+								<i class="monster-green fa fa-thumbs-up"></i>
+							{{/if}}
+						</td>
+						<td>{{ formatted.from }}</td>
+						<td>{{ formatted.to }}</td>
+						<td data-sort-value="{{created}}">{{formatted.date}}</td>
+						<td><a href="#" class="detail-link monster-link"><i class="fa fa-eye"></i></a></td>
+					</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

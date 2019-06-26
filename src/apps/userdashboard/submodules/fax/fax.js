@@ -46,7 +46,7 @@ define(function(require){
 										callback: self.faxOutboundRender
 									},{
 										text: i18n.emailToFax.menuTitle,
-										callback: self.faxEmailToFaxRender
+										callback: self.faxRenderEmailToFaxLogs
 									}]
 								}]
 							}
@@ -66,6 +66,35 @@ define(function(require){
 			this.faxRenderCommon(args, 'outbound');
 		},
 
+		faxRenderEmailToFaxLogs: function(pArgs) {
+			var self = this,
+				args = pArgs || {},
+				parent = args.container || $('#userdashboard_app_container .app-content-wrapper');
+
+			self.faxLogsGetData(function(logs) {
+				var formattedData = self.faxLogsFormatDataTable(logs),
+					template = $(self.getTemplate({
+						name: 'emailToFaxLogs',
+						submodule: CONFIG.submoduleName,
+						data: {
+							logs: formattedData
+						}
+					}));
+
+				monster.ui.footable(template.find('.footable'));
+
+				self.faxLogsBindEvents(template);
+
+				parent
+					.fadeOut(function() {
+						$(this)
+							.empty()
+							.append(template)
+							.fadeIn();
+					});
+			});
+		},
+
 		faxRenderCommon: function(args, type){
 			var self = this,
 				$container = args.container,
@@ -80,20 +109,6 @@ define(function(require){
 
 			self.faxInitDatePickerFaxboxes(type, $container, template);
 			self.faxBindFaxboxes(type, template);
-
-			$container
-				.empty()
-				.append(template)
-				.show();
-		},
-
-		faxEmailToFaxRender: function(args){
-			var self = this,
-				$container = args.container,
-				template = self.getTemplate({
-					name: 'emailToFax',
-					submodule: CONFIG.submoduleName
-				});
 
 			$container
 				.empty()
@@ -443,6 +458,104 @@ define(function(require){
 
 				monster.ui.dialog(template, { title: self.i18n.active().userdashboard.submodules.fax.CDRPopup.title });
 			});
+		},
+
+		faxLogsFormatDataTable: function(logs) {
+			_.each(logs, function(log) {
+				log.formatted = {};
+				log.formatted.hasError = log.hasOwnProperty('error');
+				log.formatted.from = log.from || '-';
+				log.formatted.to = log.to || '-';
+				log.formatted.date = monster.util.toFriendlyDate(log.created);
+			});
+
+			return logs;
+		},
+
+		faxLogsBindEvents: function(template) {
+			var self = this;
+
+			template.on('click', '.detail-link', function() {
+				var logId = $(this).parents('tr').data('id');
+
+				self.faxLogsRenderDetailPopup(logId);
+			});
+		},
+
+		faxLogsRenderDetailPopup: function(logId) {
+			var self = this;
+
+			self.faxLogsGetDetails(logId, function(details) {
+				var detailTemplate = $(self.getTemplate({
+					name: 'emailToFaxLogDetail',
+					submodule: CONFIG.submoduleName,
+					data: details
+				}));
+
+				detailTemplate.find('#close').on('click', function() {
+					popup.dialog('close').remove();
+				});
+
+				var popup = monster.ui.dialog(detailTemplate, {
+					title: self.i18n.active().userdashboard.submodules.fax.logs.detailDialog.popupTitle,
+					position: ['center', 20]
+				});
+			});
+		},
+
+		faxLogsGetData: function(callback) {
+			var self = this;
+
+			self.callApi({
+				resource: 'faxes.getLogs',
+				data: {
+					accountId: self.accountId
+				},
+				success: function(data) {
+					callback && callback(data.data);
+				}
+			});
+		},
+
+		faxLogsGetDetails: function(id, callback) {
+			var self = this;
+
+			self.callApi({
+				resource: 'faxes.getLogDetails',
+				data: {
+					accountId: self.accountId,
+					logId: id
+				},
+				success: function(data) {
+					var formattedData = self.faxLogsFormatDetailData(data.data);
+
+					callback && callback(formattedData);
+				}
+			});
+		},
+
+		faxLogsFormatDetailData: function(details) {
+			var self = this,
+				formattedData = {
+					metadata: {},
+					errors: []
+				},
+				formattedKey = '';
+
+			_.each(details, function(value, key) {
+				if (key === 'errors') {
+					formattedData.errors = value;
+				} else {
+					var i18nFax = self.i18n.active().userdashboard.submodules.fax;
+					formattedKey = i18nFax.logs.detailDialog.apiKeys.hasOwnProperty(key) ? i18nFax.logs.detailDialog.apiKeys[key] : key.replace(/_/g, ' ');
+					formattedData.metadata[key] = {
+						friendlyKey: formattedKey,
+						value: value
+					};
+				}
+			});
+
+			return formattedData;
 		},
 	};
 

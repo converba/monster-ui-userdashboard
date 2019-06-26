@@ -13,7 +13,7 @@
 					"title": "Outbound"
 				},
 				"emailToFax": {
-					"menuTitle": "Email to fax",
+					"menuTitle": "Email to fax logs",
 					"title": "Email to fax"
 				},
 				"table": {
