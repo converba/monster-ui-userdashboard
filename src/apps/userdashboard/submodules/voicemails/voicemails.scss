@@ -1,0 +1,306 @@
+@import "../../../../css/partials/base";
+
+/* Default empty state */
+.received-voicemails-container.empty .empty-state {
+	display: block;
+}
+
+.received-voicemails-container .empty-state {
+	display: none;
+	text-align: center;
+}
+
+.received-voicemails-container .empty-state .headline {
+	font-size: 22px;
+	margin-top: 35px;
+}
+
+.received-voicemails-container .empty-state .sub-headline {
+	color: #606069;
+	font-size: 16px;
+	margin-top: 13px;
+}
+
+.received-voicemails-container .empty-state .count {
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.received-voicemails-container .empty-state .vmboxes-list {
+	margin-top: 30px;
+	width: 450px;
+	text-align: left;
+}
+
+.received-voicemails-container .empty-state .chosen-drop {
+	width: 450px;
+}
+
+.received-voicemails-container .empty-state .chosen-container > a,
+.received-voicemails-container .main-header .chosen-container > a {
+	height: 40px;
+	line-height: 40px;
+	width: 450px;
+}
+
+.received-voicemails-container .main-header {
+	margin-bottom: 25px;
+}
+
+.received-voicemails-container .main-header .select-header {
+	color: #606069;
+	margin-bottom: 5px;
+}
+
+.received-voicemails-container .main-header .chosen-drop,
+.received-voicemails-container .main-header .chosen-container > a,
+.received-voicemails-container .main-header .vmboxes-list,
+.received-voicemails-container .main-header .vmbox-selector {
+	width: 300px;
+}
+
+.received-voicemails-container .main-header > * {
+	display: inline-block;
+	margin-right: 25px;
+}
+
+.received-voicemails-container .main-header #refresh_voicemails {
+	margin-top: 35px;
+}
+
+.received-voicemails-container .main-header .vmbox-selector .chosen-container .chosen-single span {
+	font-size: 18px;
+}
+
+.received-voicemails-container .main-header .counts-wrapper {
+	background: #FFF;
+	border: 1px solid $input-border-color;
+	border-radius: 2px;
+	margin-right: 25px;
+	margin-top: 24px;
+}
+
+.received-voicemails-container .main-header .counts-wrapper .count-wrapper {
+	color: #606069;
+	display: inline-block;
+	height: 26px;
+	padding: 5px;
+	text-align: center;
+	width: 70px;
+}
+
+.received-voicemails-container .main-header .counts-wrapper .count-wrapper .count-text {
+	font-size: 24px;
+	color: #333;
+	padding-left: 7px;
+}
+
+.received-voicemails-container .main-header .counts-wrapper .count-wrapper[data-type="new"] {
+	border-top: 3px solid $success-color;
+}
+
+.received-voicemails-container .main-header .counts-wrapper .count-wrapper[data-type="new"] .count-text {
+	color: $success-color;
+}
+
+.received-voicemails-container .main-header .counts-wrapper .count-wrapper:not(:last-child) {
+	border-right: 1px solid $input-border-color;
+}
+
+.received-voicemails-container .data-state {
+	display: none;
+}
+
+.received-voicemails-container .loading-state {
+	display: none;
+	background: #fff none repeat scroll 0 0;
+	border: 1px dashed #aaa;
+	font-size: 60px;
+	padding: 50px;
+	text-align: center;
+	position: relative;
+	top: 50px;
+}
+
+.received-voicemails-container .vmboxes-list {
+	display: block;
+	margin: auto;
+	width: 400px;
+}
+
+/* Action Bar */
+.received-voicemails-container.empty .filters.search,
+.received-voicemails-container.empty .filters.basic-actions > *,
+.received-voicemails-container.empty .main-header {
+	display: none;
+}
+
+.received-voicemails-container .filters.basic-actions {
+	display: inline-block;
+}
+
+.received-voicemails-container:not(.empty) .action-bar {
+	display: block;
+}
+
+.received-voicemails-container .action-bar {
+	display: none;
+}
+
+.received-voicemails-container .action-bar .filters > :first-child {
+	margin-left: 0;
+}
+
+.received-voicemails-container .action-bar .margin-left {
+	margin-left: 10px;
+}
+
+.received-voicemails-container .action-bar .hidable {
+	display: inline-block;
+}
+
+.received-voicemails-container .action-bar .hidable.hidden {
+	display: none;
+}
+
+.received-voicemails-container .action-bar .move-to-wrapper {
+	margin-left: 10px;
+}
+
+/* Table */
+.received-voicemails-container .voicemails-table table {
+	margin-top: 0;
+}
+
+.received-voicemails-container .voicemails-table tbody tr > td:first-child {
+	position: relative;
+}
+
+.received-voicemails-container .voicemails-table tbody tr > td .disable-cell-content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	display: none;
+}
+
+.received-voicemails-container .voicemails-table .highlighted tbody tr > td .disable-cell-content {
+	display: block;
+}
+
+.received-voicemails-container .voicemails-table tbody tr > td:first-child .monster-checkbox {
+	margin-right: 10px;
+	margin-top: 8px;
+}
+
+.received-voicemails-container .voicemails-table table.highlighted tbody tr {
+	opacity: 0.3;
+}
+
+.received-voicemails-container .voicemails-table table.highlighted tbody tr.active {
+	opacity: 1;
+}
+
+.received-voicemails-container .voicemails-table .select-cell {
+	min-width: 20px !important;
+}
+
+.received-voicemails-container .voicemails-table .status {
+	text-transform: uppercase;
+}
+
+.received-voicemails-container .voicemails-table .select-line {
+	cursor: pointer;
+}
+
+.received-voicemails-container .voicemails-table tr .bottom-line {
+	color: #707079;
+	font-size: 12px;
+}
+
+.received-voicemails-container .voicemails-table td.no-padding {
+	padding: 0;
+}
+
+.received-voicemails-container .dropdown-menu.vmbox-target {
+	height: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+/* Fixing the width to make the transition smoother when playing a file */
+.received-voicemails-container .voicemails-table .actions {
+	width: 128px;
+}
+
+/* Voicemail Player */
+.received-voicemails-container .voicemails-table .voicemail-player {
+	display: table-cell;
+	width: 175px;
+}
+
+.received-voicemails-container .voicemails-table .close-player {
+	cursor: pointer;
+}
+
+.received-voicemails-container .voicemails-table .voicemail-player audio {
+	width: 170px;
+	float: right;
+}
+
+.received-voicemails-container .voicemails-table .voicemail-player .close-player {
+	border: 1px solid #aaa;
+	border-radius: 0 4px 4px 0;
+	color: #888;
+	float: right;
+	font-weight: bold;
+	margin: 0;
+	padding: 3px 12px;
+}
+
+.received-voicemails-container .filter-by-date .date-ranges > * {
+	margin: 0 10px 0 0;
+	vertical-align: middle;
+}
+
+.received-voicemails-container .filter-by-date .date-ranges > span {
+	margin-right: 5px;
+}
+
+.received-voicemails-container .filter-by-date .date-ranges input.date-filter {
+	height: 24px;
+	width: 90px;
+}
+
+.received-voicemails-container .filter-by-date .date-ranges i.fa-calendar {
+	margin-left: -30px;
+	margin-right: 20px;
+}
+
+.received-voicemails-container .filter-by-date {
+	float: right;
+	line-height: 30px;
+	margin-left: 30px;
+}
+
+.received-voicemails-container .filter-by-date.active .expand-dates {
+	float: right;
+}
+
+.received-voicemails-container .filter-by-date .date-ranges,
+.received-voicemails-container .filter-by-date.active .expand-dates {
+	display: none;
+}
+
+.received-voicemails-container .filter-by-date.active .date-ranges {
+	display: block;
+}
+
+/* CDR Popup */
+#voicemails_cdr_details_dialog {
+	width: 750px;
+	margin: 15px;
+}

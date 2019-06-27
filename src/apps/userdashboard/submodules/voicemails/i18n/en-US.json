@@ -1,0 +1,67 @@
+{
+	"userdashboard": {
+		"submodules": {
+			"voicemails": {
+				"menuTitle": "Voicemails",
+				"title": "Voicemails",
+				"receivedVMs": {
+					"filterByDate": "Filter by Dates",
+					"table": {
+						"columns": {
+							"status": "Status",
+							"callId": "Call ID",
+							"received": "Received",
+							"from": "From",
+							"targetNumber": "Target Number",
+							"duration": "Duration",
+							"name": "Name"
+						},
+						"emptyRow": "There are no messages stored in the selected Voicemail Box"
+					},
+					"empty": {
+						"headline1": "There are",
+						"headline2": "voicemail boxes recognized on this account",
+						"subHeadline": "Select a box to manage the voicemails it contains."
+					},
+					"actionBar": {
+						"select": {
+							"all": "All on page",
+							"new": "New",
+							"listened": "Listened",
+							"deleted": "Deleted",
+							"none": "None"
+						},
+						"selectVM": {
+							"none": "Select a Voicemail Box"
+						},
+						"from": "From",
+						"to": "To",
+						"markAsNew": "Mark as New",
+						"markAsListened": "Mark as Listened",
+						"markAsDeleted": "Mark as Deleted",
+						"tooltips": {
+							"markAs": "Mark As",
+							"refresh": "Refresh",
+							"select": "Select",
+							"moveTo": "Move To",
+							"delete": "This will remove the selected voicemails from the database and they won't be retrievable afterwards."
+						},
+						"delete": "Delete",
+						"currentlyViewing": "Currently Viewing",
+						"new": "New:",
+						"total": "Total:"
+					},
+					"status": {
+						"saved": "Listened",
+						"deleted": "Deleted",
+						"new": "New"
+					},
+					"noCDR": "We didn't find any corresponding CDR to this message. It is possible that the logs have been deleted from the system if this is an old message.",
+					"CDRPopup": {
+						"title": "CDR Details"
+					}
+				}
+			}
+		}
+	}
+}

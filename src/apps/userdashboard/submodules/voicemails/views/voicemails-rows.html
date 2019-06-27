@@ -1,0 +1,47 @@
+{{#each voicemails}}
+	<tr class="voicemail-row" data-media-id="{{formatted.mediaId}}" data-call-id="{{formatted.callId}}" data-timestamp="{{timestamp}}" data-folder="{{folder}}">
+		<td style="width:20px;" class="select-cell" data-filter-value="{{formatted.callId}}">
+			{{#monsterCheckbox}}
+				<input class="select-message" type="checkbox" data-media-id="{{formatted.mediaId}}"/>
+			{{/monsterCheckbox}}
+			<div class="disable-cell-content"></div>
+		</td>
+		<td class="status select-line" data-folder="{{folder}}" data-sort-value="{{folder}}">
+			{{#compare folder "===" "new"}}
+				<span class="monster-badge-success">
+			{{else}}
+				{{#compare folder "===" "deleted"}}
+					<span class="monster-badge-danger">
+				{{else}}
+					<span class="monster-badge-neutral">
+				{{/compare}}
+			{{/compare}}
+				{{tryI18n @root.i18n.userdashboard.submodules.voicemails.receivedVMs.status folder}}
+			</span>
+		</td>
+		<!--<td class="select-line">{{call_id}}</td>-->
+		<td class="select-line no-padding" data-filter-value="{{timestamp}} {{toFriendlyDate timestamp}}" data-sort-value="{{timestamp}}">
+			<div class="top-line">{{toFriendlyDate timestamp 'date'}}</div>
+			<div class="bottom-line">{{toFriendlyDate timestamp 'time'}}</div>
+		</td>
+		{{#if formatted.showCallerIDName}}
+			<td class="select-line no-padding" data-filter-value="{{from}} {{formatted.from}} {{ formatted.callerIDName }}" data-sort-value="{{formatted.from}} {{ formatted.callerIDName }}" >
+				<div class="top-line">{{#monsterNumberWrapper formatted.callerIDName}}{{/monsterNumberWrapper}}</div>
+				<div class="bottom-line">{{#monsterNumberWrapper formatted.from}}{{/monsterNumberWrapper}}</div>
+			</td>
+		{{else}}
+			<td class="select-line" data-filter-value="{{from}} {{formatted.from}} {{ formatted.callerIDName }}" data-sort-value="{{formatted.from}} {{ formatted.callerIDName }}">
+				{{#monsterNumberWrapper formatted.from}}{{/monsterNumberWrapper}}
+			</td>
+		{{/if}}
+		<td class="select-line" data-filter-value="{{to}} {{formatted.to}}" data-sort-value="{{formatted.to}}">{{#monsterNumberWrapper formatted.to}}{{/monsterNumberWrapper}}</td>
+		<td class="duration select-line">{{formatted.duration}}</td>
+		<td class="actions">
+			<i class="fa fa-play-circle action-item play-vm"></i>
+			<a class="action-item" href="{{formatted.uri}}" target="_blank">
+				<i class="fa fa-download download-vm"></i>
+			</a>
+			<i class="fa fa-list action-item details-vm"></i>
+		</td>
+	</tr>
+{{/each}}

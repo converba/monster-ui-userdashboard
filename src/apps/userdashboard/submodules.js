@@ -3,6 +3,7 @@ define(function(require) {
 		"submodules": [
 			"findme",
 			"fax",
+			"voicemails",
 			"settings"
 		]
 	};
