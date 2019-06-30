@@ -1,0 +1,55 @@
+{{#each cdrs}}
+<div class="grid-row-group">
+	<div class="grid-row main-leg" data-id="{{this.id}}">
+		<div class="grid-cell direction">
+			<div class="sub-cell single-cell">
+				{{#if this.isOutboundCall}}
+				<i class="fa fa-arrow-left monster-orange"></i>
+				{{else}}
+				<i class="fa fa-arrow-right monster-green"></i>
+				{{/if}}
+			</div>
+		</div>
+		<div class="grid-cell datetime">
+			<div class="sub-cell cell-top">{{this.date}}</div>
+			<div class="sub-cell cell-bottom">{{this.time}}</div>
+		</div>
+		<div class="grid-cell from">
+			{{#if this.fromName}}
+			<div class="sub-cell cell-top">{{formatPhoneNumber this.fromNumber}}</div>
+			<div class="sub-cell cell-bottom">{{this.fromName}}</div>
+			{{else}}
+			<div class="sub-cell single-cell">{{formatPhoneNumber this.fromNumber}}</div>
+			{{/if}}
+		</div>
+		<div class="grid-cell to">
+			{{#if this.toName}}
+			<div class="sub-cell cell-top">{{formatPhoneNumber this.toNumber}}</div>
+			<div class="sub-cell cell-bottom">{{this.toName}}</div>
+			{{else}}
+			<div class="sub-cell single-cell">{{formatPhoneNumber this.toNumber}}</div>
+			{{/if}}
+		</div>
+		<div class="grid-cell duration">
+			<div class="sub-cell single-cell">
+				{{this.duration}}
+			</div>
+		</div>
+		<div class="grid-cell hangup">
+			<div class="sub-cell single-cell" data-original-title="{{this.hangupHelp}}" data-placement="top" data-toggle="tooltip">
+				<span class="cause-title">{{this.hangupCause}}</span>
+			</div>
+		</div>
+		<div class="grid-cell actions">
+			<div class="sub-cell single-cell">
+				{{#if ../showReport}}<a class="monster-link" target="_blank" href="{{this.mailtoLink}}"><i data-placement="top" data-toggle="tooltip" data-placement="top" data-original-title="{{ @root.i18n.userdashboard.submodules.callLogs.actions.report }}" class="fa fa-lg fa-fire-extinguisher"></i></a>{{/if}}
+			</div>
+		</div>
+	</div>
+	<div class="extra-legs">
+		<div class="loading-container">
+			{{@root.i18n.userdashboard.submodules.callLogs.loading}} <i class="fa fa-spinner fa-spin monster-primary-color fa-lg"></i>
+		</div>
+	</div>
+</div>
+{{/each}}

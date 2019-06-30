@@ -1,0 +1,56 @@
+{
+	"userdashboard": {
+		"submodules": {
+			"callLogs": {
+				"menuTitle": "Call logs",
+				"title": "Call Logs",
+				"dateRangeTo": "to",
+				"noSearchMatch": "You search criteria did not match any Call Log.",
+				"detailsPopupTitle": "Call Log Details",
+				"applyFilter": "Filter by selected dates",
+				"resetFilter": "Reset filter to default dates",
+				"gridHeaders": {
+					"inboundCall": "Inbound",
+					"outboundCall": "Outbound",
+					"dateTime1": "Date/Time",
+					"from": "From",
+					"to": "To",
+					"duration1": "Duration",
+					"duration2": "(Min)",
+					"hangup1": "Hangup",
+					"hangup2": "Cause",
+					"details1": "Call",
+					"actions": "Actions"
+				},
+				"reportCall": "Report Call",
+				"loaderMessage": "Scroll down or click here to load additional Call Logs.",
+				"loadingMessage": "Loading additional Call Logs...",
+				"alertMessages": {
+					"getDetailsError": "An error occured while retrieving the call log's details."
+				},
+				"key": "Key",
+				"value": "Value",
+				"thisMonth": "This Month",
+				"thisWeek": "This Week",
+				"thisDay": "Today",
+				"custom": "Custom",
+				"callsFrom": "Showing calls from",
+				"callsTo": "to",
+				"loading": "Loading additional information...",
+				"actions": {
+					"report": "Report Call",
+					"details": "Technical Details"
+				},
+				"downloadTooltip": "In \"Custom\" Mode, you'll need to click on \"Filter\" before clicking on download.",
+				"devicesTypes": {
+					"line": "Line",
+					"none": "None",
+					"presence": "Presence",
+					"parking": "Parking",
+					"personal_parking": "Personal Parking",
+					"speed_dial": "Speed Dial"
+				}
+			}
+		}
+	}
+}

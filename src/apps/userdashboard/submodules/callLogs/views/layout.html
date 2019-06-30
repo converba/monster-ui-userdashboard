@@ -1,0 +1,94 @@
+<div id="userdashboard_call-logs" class="userdashboard-call-logs">
+	<div id="call_logs_container">
+		<div class="call-logs-header">
+			<div class="fixed-ranges">
+				<div class="btn-toolbar pull-left">
+					<div class="btn-group">
+						<button data-type="today" class="btn{{#compare type "===" "today"}} active{{/compare}}" type="button">{{ i18n.userdashboard.submodules.callLogs.thisDay }}</button>
+						<button data-type="thisWeek" class="btn{{#compare type "===" "thisWeek"}} active{{/compare}}" type="button">{{ i18n.userdashboard.submodules.callLogs.thisWeek }}</button>
+						<button data-type="thisMonth" class="btn{{#compare type "===" "thisMonth"}} active{{/compare}}" type="button">{{ i18n.userdashboard.submodules.callLogs.thisMonth }}</button>
+						<button data-type="custom" class="btn{{#compare type "===" "custom"}} active{{/compare}}" type="button">{{ i18n.userdashboard.submodules.callLogs.custom }}</button>
+					</div>
+				</div>
+
+				<div class="search-div pull-right">
+					<span class="search-box">
+						<i class="fa fa-search"></i>
+						<input type="text" class="search-query" placeholder="{{i18n.table.search}}">
+					</span>
+				</div>
+			</div>
+
+			<div class="sub-ranges">
+				<div class="custom-range{{#compare type "===" "custom"}} active{{/compare}}">
+					<span>{{i18n.startDate}}</span>
+					<input id="startDate" type="text" class="date-filter filter-from">
+					<span>{{i18n.endDate}}</span>
+					<input id="endDate" type="text" class="date-filter filter-to">
+					<button type="button" class="apply-filter monster-button monster-button-primary" title="{{i18n.userdashboard.submodules.callLogs.applyFilter}}">{{i18n.filter}}</button>
+				</div>
+
+				{{#if showFilteredDates}}
+					<div class="fixed-ranges-date">
+						{{ i18n.userdashboard.submodules.callLogs.callsFrom }} <span class="highlight-date">{{ toFriendlyDate fromDate "date"}}</span> {{ i18n.callLogs.callsTo }} <span class="highlight-date">{{ toFriendlyDate toDate "date" }}</span>
+					</div>
+				{{/if}}
+
+				<a href="#" role="button" class="monster-link download-csv"><i class="fa fa-download monster-green"></i>{{i18n.download}}</a>
+				<i class="help-popover fa fa-question" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.userdashboard.submodules.callLogs.downloadTooltip }}"></i>
+			</div>
+		</div>
+
+		<div class="call-logs-content">
+			<div class="call-logs-grid">
+				<div class="grid-row-group">
+					<div class="grid-row header-row">
+						<div class="grid-cell direction">
+							<div class="sub-cell cell-top">
+								<i class="fa fa-arrow-right monster-green" title="{{i18n.userdashboard.submodules.callLogs.gridHeaders.inboundCall}}"></i>
+							</div>
+							<div class="sub-cell cell-bottom">
+								<i class="fa fa-arrow-left monster-orange" title="{{i18n.userdashboard.submodules.callLogs.gridHeaders.outboundCall}}"></i>
+							</div>
+						</div>
+						<div class="grid-cell datetime">
+							<div class="sub-cell cell-top">{{i18n.userdashboard.submodules.callLogs.gridHeaders.dateTime1}}</div>
+							<div class="sub-cell cell-bottom">{{timezone}}</div>
+						</div>
+						<div class="grid-cell from">
+							<div class="sub-cell single-cell">{{i18n.userdashboard.submodules.callLogs.gridHeaders.from}}</div>
+						</div>
+						<div class="grid-cell to">
+							<div class="sub-cell single-cell">{{i18n.userdashboard.submodules.callLogs.gridHeaders.to}}</div>
+						</div>
+						<div class="grid-cell duration">
+							<div class="sub-cell cell-top">{{i18n.userdashboard.submodules.callLogs.gridHeaders.duration1}}</div>
+							<div class="sub-cell cell-bottom">{{i18n.userdashboard.submodules.callLogs.gridHeaders.duration2}}</div>
+						</div>
+						<div class="grid-cell hangup">
+							<div class="sub-cell cell-top">{{i18n.userdashboard.submodules.callLogs.gridHeaders.hangup1}}</div>
+							<div class="sub-cell cell-bottom">{{i18n.userdashboard.submodules.callLogs.gridHeaders.hangup2}}</div>
+						</div>
+						<div class="grid-cell actions">
+							<div class="sub-cell single-cell">{{i18n.userdashboard.submodules.callLogs.gridHeaders.actions}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid-row no-match">
+					<div class="grid-cell full-width">{{i18n.userdashboard.submodules.callLogs.noSearchMatch}}</div>
+				</div>
+				<div class="grid-row-container">
+				</div>
+				{{#unless cdrs}}
+				<div class="grid-row">
+					<div class="grid-cell full-width">{{i18n.table.empty}}</div>
+				</div>
+				{{/unless}}
+			</div>
+		</div>
+		<div class="call-logs-loader">
+			<div class="loader-message">{{i18n.userdashboard.submodules.callLogs.loaderMessage}}</div>
+			<div class="loading-message"><i class="fa fa-spinner fa-lg"></i><span>{{i18n.userdashboard.submodules.callLogs.loadingMessage}}</span></div>
+		</div>
+	</div>
+</div>
