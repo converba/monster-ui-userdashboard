@@ -355,10 +355,11 @@ define(function(require) {
 			}
 
 			self.callApi({
-				resource: 'cdrs.listByInteraction',
+				resource: 'cdrs.listByInteractionUser',
 				data: {
 					accountId: self.accountId,
-					filters: filters
+					filters: filters,
+					userId: self.userId
 				},
 				success: function(data, status) {
 					callback(data.data, data.next_start_key);
