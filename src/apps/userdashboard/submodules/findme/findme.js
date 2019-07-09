@@ -5,7 +5,7 @@ define(function(require){
 
 	const CONFIG = {
 		submoduleName: 'findme',
-		i18n: [ 'en-US' ],
+		i18n: [ 'en-US', 'ru-RU' ],
 		css: [ 'findme' ]
 	};
 
