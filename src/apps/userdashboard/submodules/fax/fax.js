@@ -6,7 +6,7 @@ define(function(require){
 
 	const CONFIG = {
 		submoduleName: 'fax',
-		i18n: [ 'en-US' ],
+		i18n: [ 'en-US', 'ru-RU' ],
 		css: [ 'fax' ]
 	};
 

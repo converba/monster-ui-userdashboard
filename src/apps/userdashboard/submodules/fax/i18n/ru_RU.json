@@ -1,0 +1,104 @@
+{
+	"userdashboard": {
+		"submodules": {
+			"fax": {
+				"menuTitle": "Факс",
+				"title": "Факс",
+				"inbound": {
+					"menuTitle": "Входящие",
+					"title": "Входящие"
+				},
+				"outbound": {
+					"menuTitle": "Исходящие",
+					"title": "Исходящие"
+				},
+				"emailToFax": {
+					"menuTitle": "Журналы факс через email",
+					"title": "Журналы факс через email"
+				},
+				"table": {
+					"columns": {
+						"status": "Статус",
+						"sent": "Дата",
+						"sendingFaxbox": "Отправляющий факс",
+						"sendingNumber": "Отправляющий номер",
+						"received": "Получил",
+						"receivingFaxbox": "Принимающий ящик для факсов",
+						"receivingNumber": "Принимающий номер",
+						"pages": "Страницы",
+						"from": "От"
+					},
+					"emptyRow": "Факсы отсутствуют",
+					"status": {
+						"success": "Успешно",
+						"processing": "В процессе",
+						"failed": "Не удалось",
+						"pending": "В ожидании",
+						"completed": "Выполнено"
+					},
+					"noData": "Нет данных"
+				},
+				"empty": {
+					"headline1": "Найдено",
+					"headline2": "ящиков для факсов данного аккаунта",
+					"subHeadlineInbound": "Выберите ящик для управления входящими факсами, которые он содержит.",
+					"subHeadlineOutbound": "Выберите ящик для управления исходящими факсами."
+				},
+				"actionBar": {
+					"refresh": "Обновить",
+					"select": {
+						"all": "Все на странице",
+						"failed": "Не удалось",
+						"completed": "Завершено",
+						"none": "Ничего"
+					},
+					"selectFaxbox": {
+						"none": "Выберите ящик для факсов"
+					},
+					"from": "От",
+					"to": "Кому",
+					"markAsNew": "Отметить как новый",
+					"tooltips": {
+						"refresh": "Обновить",
+						"select": "Выбрать",
+						"resend": "Переслать",
+						"delete": "Удалить"
+					},
+					"currentlyViewing": "Сейчас просматриваете",
+					"filterByDate": "Фильтр по датам"
+				},
+				"CDRPopup": {
+					"title": "Детали факса"
+				},
+				"deleteConfirm": {
+					"content": "Удаление {{variable}} выбранных факсов приведет к их безвозвратному удалению из системы. Это действие нельзя отменить, и файлы исчезнут навсегда.",
+					"title": "Вы уверены?",
+					"confirmButtonText": "Удалить выбранные файлы",
+					"success": "Вы успешно удалили выбранные факсы из системы!"
+				},
+				"resendConfirm": {
+					"content": "Вы пытаетесь повторно доставить {{variable}} факсы. Вы уверены, что хотите попробовать повторную доставку?",
+					"confirmButtonText": "Переслать факсы",
+					"title": "Вы уверены?",
+					"success": "Вы успешно попытались повторно отправить выбранные факсы!"
+				},
+				"logs": {
+					"tableTitles": {
+						"from": "От",
+						"to": "Кому",
+						"date": "Дата",
+						"details": "Детали",
+						"status": "Статус"
+					},
+					"detailDialog": {
+						"popupTitle": "Технические детали",
+						"metadataTitle": "Мета-данные",
+						"errorTitle": "Ошибки",
+						"apiKeys": {
+						}
+					}
+				}
+			}
+		}
+	}
+}
