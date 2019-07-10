@@ -5,7 +5,7 @@ define(function(require){
 
 	const CONFIG = {
 		submoduleName: 'voicemails',
-		i18n: [ 'en-US', 'de-DE' ],
+		i18n: [ 'en-US', 'de-DE', 'ru-RU' ],
 		css: [ 'voicemails' ]
 	};
 
