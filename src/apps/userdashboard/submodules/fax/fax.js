@@ -81,7 +81,9 @@ define(function(require){
 						}
 					}));
 
-				monster.ui.footable(template.find('.footable'));
+				monster.ui.footable(template.find('.footable'), {
+					empty: self.i18n.active().userdashboard.submodules.fax.table.emptyRow
+				});
 
 				self.faxLogsBindEvents(template);
 
@@ -182,7 +184,9 @@ define(function(require){
 				i18nFax = self.i18n.active().userdashboard.submodules.fax;
 
 			monster.ui.tooltips(template);
-			monster.ui.footable(template.find('.footable'));
+			monster.ui.footable(template.find('.footable'), {
+				empty: i18nFax.table.emptyRow
+			});
 
 			monster.ui.chosen($selectFaxbox, {
 				placeholder_text_single: i18nFax.actionBar.selectFaxbox.none
@@ -367,7 +371,8 @@ define(function(require){
 				},
 				backendPagination: {
 					enabled: false
-				}
+				},
+				empty: self.i18n.active().userdashboard.submodules.fax.table.emptyRow
 			});
 		},
 
