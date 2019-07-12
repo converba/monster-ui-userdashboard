@@ -86,6 +86,10 @@
 	top: 50px;
 }
 
+.faxes-container .content {
+	padding-bottom: 60px;
+}
+
 .faxes-container .faxboxes-list {
 	display: block;
 	margin: auto;
