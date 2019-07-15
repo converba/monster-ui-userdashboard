@@ -571,7 +571,8 @@ define(function(require){
 				data: {
 					accountId: self.accountId,
 					filters: {
-						paginate: false
+						paginate: false,
+						filter_owner_id: self.userId
 					}
 				},
 				success: function(data) {
@@ -579,7 +580,6 @@ define(function(require){
 				}
 			});
 		}
-
 
 	};
 
